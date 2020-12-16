@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import SlidingPanel from "react-sliding-side-panel";
+import { Link } from "react-router-dom";
+import MenuModal from "react-modal";
+import CartModal from "./CartModal";
 import Menu from "./Menu";
 import Cart from "./Cart";
 //import { Transition } from "react-transition-group";
@@ -10,11 +12,31 @@ import cart from "../assets/icons/shopping-cart2.svg";
 import doe from "../assets/images/doe2.png";
 
 //  menu:               onClick={() => setOpenPanel(true)}
+//  menu and cart need to be modals
+//  transition timing is not working - need starting gun?
+const menuStyles = {
+  overlay: {
+    backgroundColor: "rgba(255, 255, 255, 0)",
+  },
+  content: {
+    top: 0,
+    left: "-20%",
+    width: "20%",
+    border: "none",
+    padding: "none",
+    borderRadius: "none",
+    boxShadow: "0px 0px 3px 3px gray",
+  },
+};
+
+//MenuModal.setAppElement("#menu");
+//CartModal.setAppElement("#cart");
 
 const SearchBar = () => {
-  const [openMenu, setOpenMenu] = useState(false);
-  const [openCart, setOpenCart] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const addr = "1301 14th Ave";
+
   return (
     <>
       <div className="search-bar">
@@ -23,7 +45,7 @@ const SearchBar = () => {
             <img
               className="menu-icon"
               src={menu}
-              onClick={() => setOpenMenu(!openMenu)}
+              onClick={() => setMenuOpen(!menuOpen)}
             />
           </a>
           <a href="#">Delivery</a>
@@ -36,20 +58,22 @@ const SearchBar = () => {
             <span style={{ color: "#f9300a" }}>{addr}</span>
           </p>
         </div>
-        <div className="logo-box">
-          <div className="doe-hed">
-            <img
-              src={doe}
-              style={{
-                width: "24px",
-                height: "24px",
-                filter:
-                  "invert(23%) sepia(88%) saturate(3360%) hue-rotate(357deg) brightness(99%) contrast(98%)",
-              }}
-            />
+        <Link to="/">
+          <div className="logo-box">
+            <div className="doe-hed">
+              <img
+                src={doe}
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  filter:
+                    "invert(23%) sepia(88%) saturate(3360%) hue-rotate(357deg) brightness(99%) contrast(98%)",
+                }}
+              />
+            </div>
+            <p>&nbsp; D O E &nbsp; D A S H</p>
           </div>
-          <p>&nbsp; D O E &nbsp; D A S H</p>
-        </div>
+        </Link>
         <div className="search-cart">
           <input
             type="text"
@@ -58,23 +82,45 @@ const SearchBar = () => {
             name="search"
             placeholder="Search"
           ></input>
-          <div className="cart-button">
+          <div className="cart-button" onClick={() => setCartOpen(!cartOpen)}>
             <img src={cart} />0
           </div>
         </div>
       </div>
-      <SlidingPanel type={"left"} isOpen={openMenu} size={20}>
-        <div>
-          <Menu setOpenMenu={setOpenMenu} />
-        </div>
-      </SlidingPanel>
-      <SlidingPanel type={"right"} isOpen={openCart} size={30}>
-        <div>
-          <Cart setOpenCart={setOpenCart} />
-        </div>
-      </SlidingPanel>
+      <div class="menu-wrapper">
+        <MenuModal
+          isOpen={menuOpen}
+          onRequestClose={() => setMenuOpen(!menuOpen)}
+          style={menuStyles}
+        >
+          <Menu setMenuOpen={setMenuOpen} />
+        </MenuModal>
+      </div>
+      <CartModal
+        isOpen={cartOpen}
+        onRequestClose={() => setCartOpen(!cartOpen)}
+      >
+        <Cart setCartOpen={setCartOpen} />
+      </CartModal>
     </>
   );
 };
 
 export default SearchBar;
+
+/*
+
+<SlidingPanel type={"left"} isOpen={openMenu} size={20}>
+<div>
+  <Menu setOpenMenu={setOpenMenu} />
+</div>
+</SlidingPanel>
+
+*/
+
+/*
+animation: "slideRight 3s forwards",
+    "@keyframes slideRight": {
+      to: { left: 0 },
+    },
+*/
