@@ -26,6 +26,7 @@ const storeSchema = new Schema({
   zip: String,
   photo: String,
   stars: Number,
+  nationalFavorite: Boolean,
   blackOwned: Boolean,
   latitude: Number,
   longitude: Number,
