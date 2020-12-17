@@ -14,3 +14,29 @@ const productSchema = new Schema({
 });
 
 const Product = mongoose.model("Product", productSchema);
+
+const getAll = () => {
+  return new Promise((resolve, reject) => {
+    Product.find({}).exec((err, docs) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(docs);
+    });
+  });
+};
+
+const getOne = (productId) => {
+  return new Promise((resolve, reject) => {
+    Product.find({ productId }).exec((err, docs) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(docs);
+    });
+  });
+};
+
+module.exports = Product;
+module.exports.getAll = getAll;
+module.exports.getOne = getOne;
