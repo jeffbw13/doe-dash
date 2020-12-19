@@ -6,6 +6,17 @@ const faker = require("faker");
 
 mongoose.connect("mongodb://localhost/doe-dash");
 
+const shacks = [];
+shacks.push("http://www.paulnoll.com/Books/5000-Words/7000-pic-shack.jpg");
+shacks.push(
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Shack_in_Pigeon_Forge%2C_TN_by_Zachary_Davies.jpg/1024px-Shack_in_Pigeon_Forge%2C_TN_by_Zachary_Davies.jpg"
+);
+shacks.push("https://lanecovehistory.files.wordpress.com/2017/08/img_0903.jpg");
+shacks.push("https://i.redd.it/y46994pla6e31.jpg");
+shacks.push(
+  "https://www.houghtonlakeresorter.com/wp-content/uploads/images/2020-07-09/77436782-1536x1024.jpg"
+);
+
 Product.deleteMany({}, () => {
   console.log("product.deletemany is done");
 });
@@ -16,6 +27,7 @@ for (let i = 0; i < 100; i++) {
     productId: i + 1,
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
+    category: "Mexican",
     photo: faker.image.food(),
     price: faker.commerce.price(),
   };
@@ -23,40 +35,49 @@ for (let i = 0; i < 100; i++) {
 }
 
 Product.insertMany(products)
-  .then(() => console.log("products database populated"))
-  .catch((err) => console.log(err))
-  .finally(() => mongoose.connection.close());
+  .then((docs) => {
+    console.log("products database populated");
+    createStores(docs);
+  })
+  .catch((err) => console.log(err));
+//.finally(() => mongoose.connection.close());
 
-Store.deleteMany({}, () => {
-  console.log("store.deletemany is done");
-});
+function createStores(products) {
+  Store.deleteMany({}, () => {
+    console.log("store.deletemany is done");
+  });
 
-const stores = [];
-for (let i = 0; i < 100; i++) {
-  const lat = getRandomInteger(37749, 37804);
-  const long = getRandomInteger(122399, 12247) * -1; //  west longitude
-  const store = {
-    storeId: i + 1,
-    name: faker.company.companyName(),
-    type: "R",
-    category: "Mexican",
-    description: faker.company.catchPhrase(),
-    address: faker.address.streetAddress(),
-    city: faker.address.city(),
-    state: faker.address.state(),
-    zip: faker.address.zipCode(),
-    photo: "",
-    products: [],
-    latitude: lat * 0.001,
-    longitude: long * 0.001,
-  };
-  stores.push(store);
+  const stores = [];
+  for (let i = 0; i < 100; i++) {
+    const lat = getRandomInteger(37749, 37804);
+    const long = getRandomInteger(122399, 12247) * -1; //  west longitude
+    const store = {
+      storeId: i + 1,
+      name: faker.company.companyName(),
+      type: "R",
+      category: "Mexican",
+      description: faker.company.catchPhrase(),
+      address: faker.address.streetAddress(),
+      city: faker.address.city(),
+      state: faker.address.state(),
+      zip: faker.address.zipCode(),
+      photo: shacks[getRandomInteger(0, 4)],
+      products: [],
+      latitude: lat * 0.001,
+      longitude: long * 0.001,
+    };
+    for (let x = 0; x < 10; x++) {
+      store.products.push(products[x]);
+    }
+    //store.products.push(products[1]);
+    stores.push(store);
+  }
+
+  Store.insertMany(stores)
+    .then(() => console.log("stores database populated"))
+    .catch((err) => console.log(err))
+    .finally(() => mongoose.connection.close());
 }
-
-Store.insertMany(stores)
-  .then(() => console.log("stores database populated"))
-  .catch((err) => console.log(err))
-  .finally(() => mongoose.connection.close());
 
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

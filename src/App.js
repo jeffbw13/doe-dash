@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage";
 import AddressPage from "./components/AddressPage";
 import PickupPage from "./components/PickupPage";
 import OffersPage from "./components/OffersPage";
+import HelpPage from "./components/HelpPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/address" component={AddressPage} />
         <Route exact path="/pickup" component={PickupPage} />
         <Route exact path="/offers" component={OffersPage} />
+        <Route exact path="/help" component={HelpPage} />
       </div>
     </Router>
   );

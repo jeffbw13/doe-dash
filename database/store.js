@@ -30,7 +30,7 @@ const storeSchema = new Schema({
   blackOwned: Boolean,
   latitude: Number,
   longitude: Number,
-  products: [{ product: productSchema, qoh: Number }],
+  products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   createdAt: { type: Date, required: true, default: Date.now },
   updatedAt: { type: Date, required: true, default: Date.now },
 });
@@ -39,12 +39,14 @@ const Store = mongoose.model("Store", storeSchema);
 
 const getAll = () => {
   return new Promise((resolve, reject) => {
-    Store.find({}).exec((err, docs) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(docs);
-    });
+    Store.find({})
+      .populate("products")
+      .exec((err, docs) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(docs);
+      });
   });
 };
 

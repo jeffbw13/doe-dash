@@ -1,9 +1,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const Store = require("../database/store");
 const Product = require("../database/product");
+
 const app = express();
+
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 app.get("/ping", function (req, res) {
   return res.send("pong");
