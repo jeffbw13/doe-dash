@@ -27,7 +27,7 @@ for (let i = 0; i < 100; i++) {
     productId: i + 1,
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
-    category: "Mexican",
+    category: ["mexican"],
     photo: faker.image.food(),
     price: faker.commerce.price(),
   };

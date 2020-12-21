@@ -18,7 +18,7 @@ const storeSchema = new Schema({
   storeId: { type: Number, required: true, unique: true },
   name: { type: String, required: true },
   type: { type: String, required: true },
-  category: String,
+  categories: [String],
   description: String,
   address: String,
   city: String,
@@ -28,6 +28,13 @@ const storeSchema = new Schema({
   stars: Number,
   nationalFavorite: Boolean,
   blackOwned: Boolean,
+  addons: [
+    {
+      description: String,
+      required: boolean,
+      options: [{ option: String, price: Number }],
+    },
+  ],
   latitude: Number,
   longitude: Number,
   products: [{ type: Schema.Types.ObjectId, ref: "Product" }],

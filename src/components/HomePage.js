@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
+import CategoryBar from "./CategoryBar";
 import Show5Stores from "./Show5Stores";
 import Store from "./Store";
 
@@ -32,6 +33,7 @@ const HomePage = () => {
   return (
     <>
       <SearchBar />
+      {display === "featuredStores" && <CategoryBar />}
       {display === "featuredStores" &&
         whatToShow.map((showing) => {
           return (
