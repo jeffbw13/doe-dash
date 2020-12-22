@@ -22,8 +22,10 @@ const Show5Stores = ({ showing, setDisplay, setStore }) => {
     console.log("setdisplay", setDisplay);
     // setDisplay{"store"};
   };
+
   const stores2 = stores.slice(0, 2);
   const stores3 = stores.slice(2, 5);
+
   return (
     <>
       <div className="show-5-stores">

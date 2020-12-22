@@ -128,6 +128,15 @@ a {
   right: 0;
 }
 
+.card-name {
+  font-weight: 700;
+  margin: 3px 0px;
+}
+
+.card-text {
+  margin: 3px 0px;
+}
+
 /*  copied from doordash style to see how it works */
 .show-5-stores {
   display: flex;
@@ -190,6 +199,10 @@ a {
   overflow: hidden;
 }
 
+.store-card-text {
+  text-align: left;
+}
+
 .store-card img {
   width: 100%;
   height: 10em;
@@ -230,6 +243,10 @@ a {
   height: auto;
 }
 
+.product-card-text {
+  text-align: left;
+}
+
 .product-card img {
   width: 100%;
   height: 10em;
@@ -242,6 +259,17 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.category-box-box {
+  background-color: white;
+  width: 95%;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .category-box {
@@ -268,4 +296,55 @@ a {
 
 .category-box p {
   margin: 4px 0px;
+}
+
+.category {
+  margin: auto;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(245, 227, 205);
+}
+
+.category-left {
+  width: 45%;
+  min-width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-justify: left;
+}
+
+.category-right {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.store-2-prods {
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 16px;
+  background-color: white;
+}
+
+.store-2-prods-img {
+  width: 100%;
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+}
+
+.store-2-prods-text {
+  width: 100%;
+  text-align: left;
+}
+
+.store-2-prods img {
+  width: 48%;
+  height: 150px;
+  margin: 0;
+  border-radius: 5px;
 }

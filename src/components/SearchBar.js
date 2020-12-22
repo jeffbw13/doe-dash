@@ -87,7 +87,7 @@ const SearchBar = () => {
           </div>
         </div>
       </div>
-      <div class="menu-wrapper">
+      <div className="menu-wrapper">
         <MenuModal
           isOpen={menuOpen}
           onRequestClose={() => setMenuOpen(!menuOpen)}

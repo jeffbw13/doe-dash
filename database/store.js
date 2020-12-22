@@ -26,12 +26,15 @@ const storeSchema = new Schema({
   zip: String,
   photo: String,
   stars: Number,
+  cost: Number,
+  deliveryCost: Number,
   nationalFavorite: Boolean,
+  localFavorite: Boolean,
   blackOwned: Boolean,
   addons: [
     {
       description: String,
-      required: boolean,
+      required: Boolean,
       options: [{ option: String, price: Number }],
     },
   ],

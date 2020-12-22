@@ -5,8 +5,10 @@ const StoreCard = ({ store, handleStoreClick }) => {
         <div className="store-card-img">
           <img src={store.photo} />
         </div>
-        <h4>{store.name}</h4>
-        <p>{store.description}</p>
+        <div className="store-card-text">
+          <p className="card-name">{store.name}</p>
+          <p className="card-text">{store.description}</p>
+        </div>
       </div>
     </>
   );

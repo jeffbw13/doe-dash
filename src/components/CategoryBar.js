@@ -1,14 +1,23 @@
 import React from "react";
-import categories from "../library/categories";
+import categories from "../data/categories";
 import CategoryBox from "./CategoryBox";
-//  this retrieves where in /dist the images now reside
-//const images = require("../assets/icons/#chicken.jpg");
 
-const CategoryBar = () => {
+const CategoryBar = ({ setDisplay, setCategory }) => {
+  const handleCategoryClick = (category) => {
+    setCategory(category);
+    setDisplay("category");
+  };
+
   return (
     <div className="category-bar">
-      {categories.map((cat) => {
-        return <CategoryBox key={cat.key} cat={cat} />;
+      {categories.map((category) => {
+        return (
+          <CategoryBox
+            key={category.key}
+            category={category}
+            handleCategoryClick={handleCategoryClick}
+          />
+        );
       })}
     </div>
   );
