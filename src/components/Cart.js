@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Cart = () => {
+const Cart = (props) => {
+  const [contents, setContents] = useState([]);
   return <h4>Cart</h4>;
 };
 

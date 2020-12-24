@@ -31,13 +31,6 @@ const storeSchema = new Schema({
   nationalFavorite: Boolean,
   localFavorite: Boolean,
   blackOwned: Boolean,
-  addons: [
-    {
-      description: String,
-      required: Boolean,
-      options: [{ option: String, price: Number }],
-    },
-  ],
   latitude: Number,
   longitude: Number,
   products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
@@ -48,6 +41,24 @@ const storeSchema = new Schema({
 const Store = mongoose.model("Store", storeSchema);
 
 const getAll = () => {
+  return new Promise((resolve, reject) => {
+    Store.find({})
+      .populate("products")
+      .exec((err, docs) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(docs);
+      });
+  });
+};
+
+//  this should probably be the standard endpoint
+//  allows filtering, pagination...
+const get = (query) => {
+  //  we have things like cost, #stars, distance
+  //  distance cannot be directly queried; have to calculate it record by record
+  console.log(query);
   return new Promise((resolve, reject) => {
     Store.find({})
       .populate("products")

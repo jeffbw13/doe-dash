@@ -22,6 +22,44 @@ Product.deleteMany({}, () => {
 });
 
 const products = [];
+const addons = [
+  {
+    description: "size",
+    required: true,
+    options: [
+      {
+        option: "small",
+        price: 1.25,
+      },
+      {
+        option: "medium",
+        price: 2.5,
+      },
+      {
+        option: "large",
+        price: 3.75,
+      },
+    ],
+  },
+  {
+    description: "topping",
+    required: false,
+    options: [
+      {
+        option: "strawberry",
+        price: 1.25,
+      },
+      {
+        option: "banana",
+        price: 2.5,
+      },
+      {
+        option: "coconut",
+        price: 3.75,
+      },
+    ],
+  },
+];
 for (let i = 0; i < 100; i++) {
   const product = {
     productId: i + 1,
@@ -30,6 +68,7 @@ for (let i = 0; i < 100; i++) {
     category: "mexican",
     photo: faker.image.food(),
     price: faker.commerce.price(),
+    addons: addons,
   };
   products.push(product);
 }
@@ -62,6 +101,12 @@ function createStores(products) {
       state: faker.address.state(),
       zip: faker.address.zipCode(),
       photo: shacks[getRandomInteger(0, 4)],
+      stars: getRandomInteger(1, 5),
+      cost: getRandomInteger(1, 5),
+      deliveryCost: 3.99,
+      nationalFavorite: true,
+      localFavorite: true,
+      blackOwned: true,
       products: [],
       latitude: lat * 0.001,
       longitude: long * 0.001,

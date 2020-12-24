@@ -50,6 +50,20 @@ app.get("/store/:storeId", function (req, res) {
     });
 });
 
+//  prevailing endpoint.  Allows filtering, pagination, sorting, etc
+app.get("/store/", function (req, res) {
+  Store.get(req.query)
+    .then((stores) => {
+      res.write(JSON.stringify(stores));
+      res.end();
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+      res.status(500).send(new Error(err));
+      res.end();
+    });
+});
+
 app.get("/product/all", function (req, res) {
   Product.getAll()
     .then((prods) => {

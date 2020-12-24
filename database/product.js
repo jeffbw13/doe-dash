@@ -10,6 +10,14 @@ const productSchema = new Schema({
   category: String,
   photo: String,
   price: Number,
+  addons: [
+    {
+      description: String,
+      required: Boolean,
+      choice: Boolean,
+      options: [{ option: String, price: Number }],
+    },
+  ],
   createdAt: { type: Date, required: true, default: Date.now },
   updatedAt: { type: Date, required: true, default: Date.now },
 });

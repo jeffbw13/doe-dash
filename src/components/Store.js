@@ -1,5 +1,7 @@
 import React from "react";
 import Products from "./Products";
+import Cart from "./Cart";
+//  Products here is the menu
 
 const Store = ({ store }) => {
   return (
@@ -8,6 +10,7 @@ const Store = ({ store }) => {
       <img src={store.photo} />
       <h1>{store.name}</h1>
       <Products store={store} />
+      <Cart />
     </div>
   );
 };
