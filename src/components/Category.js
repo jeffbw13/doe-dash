@@ -12,11 +12,14 @@ const Category = ({ category, setDisplay, setStore, setCategory }) => {
   //  we'll need to get some stores that have the desired category
   useEffect(() => {
     //  this needs to be promise based - get rid of callback
-    getStores((data) => {
-      //console.log("data: ", data);
-      setStores(data);
-    });
-  }, []);
+    getStores(
+      (data) => {
+        //console.log("data: ", data);
+        setStores(data);
+      },
+      { categories: `=${category.id}` }
+    );
+  }, [category]);
 
   const handleCategoryClick = (category) => {
     //alert("clicked on store");

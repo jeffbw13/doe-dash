@@ -33,6 +33,7 @@ const storeSchema = new Schema({
   blackOwned: Boolean,
   latitude: Number,
   longitude: Number,
+  distance: Number,
   products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   createdAt: { type: Date, required: true, default: Date.now },
   updatedAt: { type: Date, required: true, default: Date.now },
@@ -58,9 +59,9 @@ const getAll = () => {
 const get = (query) => {
   //  we have things like cost, #stars, distance
   //  distance cannot be directly queried; have to calculate it record by record
-  console.log(query);
+  //console.log(query);
   return new Promise((resolve, reject) => {
-    Store.find({})
+    Store.find(query)
       .populate("products")
       .exec((err, docs) => {
         if (err) {
@@ -85,3 +86,4 @@ const getOne = (productId) => {
 module.exports = Store;
 module.exports.getAll = getAll;
 module.exports.getOne = getOne;
+module.exports.get = get;

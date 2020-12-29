@@ -17,6 +17,18 @@ shacks.push(
   "https://www.houghtonlakeresorter.com/wp-content/uploads/images/2020-07-09/77436782-1536x1024.jpg"
 );
 
+const categories = [
+  "mexican",
+  "italian",
+  "coffee",
+  "doughnuts",
+  "chinese",
+  "japanese",
+  "chicken",
+  "sandwiches",
+  "hamburgers",
+];
+
 Product.deleteMany({}, () => {
   console.log("product.deletemany is done");
 });
@@ -89,12 +101,12 @@ function createStores(products) {
   const stores = [];
   for (let i = 0; i < 100; i++) {
     const lat = getRandomInteger(37749, 37804);
-    const long = getRandomInteger(122399, 12247) * -1; //  west longitude
+    const long = getRandomInteger(122399, 122470) * -1; //  west longitude
     const store = {
       storeId: i + 1,
       name: faker.company.companyName(),
       type: "R",
-      categories: ["Mexican"],
+      categories: categories[getRandomInteger(1, categories.length) - 1],
       description: faker.company.catchPhrase(),
       address: faker.address.streetAddress(),
       city: faker.address.city(),
@@ -104,13 +116,16 @@ function createStores(products) {
       stars: getRandomInteger(1, 5),
       cost: getRandomInteger(1, 5),
       deliveryCost: 3.99,
-      nationalFavorite: true,
-      localFavorite: true,
-      blackOwned: true,
+      nationalFavorite: getRandomInteger(1, 5) === 1 ? true : false,
+      localFavorite: getRandomInteger(1, 5) === 1 ? true : false,
+      blackOwned: getRandomInteger(1, 5) === 1 ? true : false,
       products: [],
       latitude: lat * 0.001,
       longitude: long * 0.001,
+      distance: 0,
     };
+    //  distance is a fake field, because Mongoose apparently will not allow you to
+    //    add new propertes to an object on the fly.
     for (let x = 0; x < 10; x++) {
       store.products.push(products[x]);
     }

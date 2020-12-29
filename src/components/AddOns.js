@@ -4,7 +4,7 @@ import decrease from "../assets/icons/decrease.svg";
 import increase from "../assets/icons/increase.svg";
 import AddOn from "./AddOn";
 
-const AddOns = ({ product, setModalOpen }) => {
+const AddOns = ({ product, setModalOpen, purchaseItem }) => {
   let totalItems = 1;
   let totalCost = product.price;
   return (
@@ -33,7 +33,15 @@ const AddOns = ({ product, setModalOpen }) => {
         <img src={decrease} />
         <input type="text" size="4" value={totalItems} />
         <img src={increase} />
-        <button type="button">Add to cart - {totalCost}</button>
+        <button
+          type="button"
+          onClick={() => {
+            setModalOpen(false);
+            purchaseItem(product);
+          }}
+        >
+          Add to cart - {totalCost}
+        </button>
       </div>
     </div>
   );

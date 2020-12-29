@@ -1,6 +1,6 @@
 const categories = [
   {
-    id: "fries",
+    id: "fastfood",
     title: "Fast Food",
     description: "bar",
   },
@@ -31,12 +31,17 @@ const categories = [
   },
   {
     id: "japanese",
-    title: "sushi",
+    title: "Sushi",
     description: "bar",
   },
   {
     id: "coffee",
-    title: "coffee",
+    title: "Coffee",
+    description: "bar",
+  },
+  {
+    id: "italian",
+    title: "Italian",
     description: "bar",
   },
 ];

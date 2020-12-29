@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddOnModal from "react-modal";
 import AddOns from "./AddOns";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, purchaseItem }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const modalStyles = {
@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
         <div className="product-card-text">
           <p className="card-name">{product.name}</p>
           <p className="card-text">{product.description}</p>
-          <p className="card-text">{product.price}</p>
+          <p className="card-text">{`$${product.price}`}</p>
         </div>
       </div>
       <AddOnModal
@@ -34,7 +34,11 @@ const ProductCard = ({ product }) => {
         onRequestClose={() => setModalOpen(false)}
         style={modalStyles}
       >
-        <AddOns product={product} setModalOpen={setModalOpen} />
+        <AddOns
+          product={product}
+          setModalOpen={setModalOpen}
+          purchaseItem={purchaseItem}
+        />
       </AddOnModal>
     </>
   );

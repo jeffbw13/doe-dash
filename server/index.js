@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const geoDistance = require("./library/geoDistance");
 const Store = require("../database/store");
 const Product = require("../database/product");
 
@@ -52,8 +53,26 @@ app.get("/store/:storeId", function (req, res) {
 
 //  prevailing endpoint.  Allows filtering, pagination, sorting, etc
 app.get("/store/", function (req, res) {
+  //  user loc is not in the database
+  const userLoc = [0, 0];
+  if (req.query.lat) {
+    userLoc[0] = req.query.lat;
+    userLoc[1] = req.query.lng;
+    delete req.query.lat;
+    delete req.query.lng;
+  }
+  //console.log(req.query);
   Store.get(req.query)
     .then((stores) => {
+      //  plug in distances
+      //  would NOT allow me to add 'distance' property
+      stores.forEach((store) => {
+        store.distance =
+          Math.round(
+            geoDistance(userLoc, [store.latitude, store.longitude]) * 100
+          ) * 0.01;
+      });
+
       res.write(JSON.stringify(stores));
       res.end();
     })

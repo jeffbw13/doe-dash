@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import closex from "../assets/icons/closex.svg";
 import home from "../assets/icons/home.svg";
 import pickup from "../assets/icons/pickup.svg";
@@ -8,7 +8,9 @@ import help from "../assets/icons/help.svg";
 import signup from "../assets/icons/signup.svg";
 
 //  problem:  when you click on a page & you're already on it, it doesn't do anything
-const Menu = ({ setMenuOpen }) => {
+const Menu = (props) => {
+  const setMenuOpen = props.setMenuOpen;
+  console.log("props:", props);
   return (
     <div className="menu">
       <div className="menu-close">
@@ -19,22 +21,51 @@ const Menu = ({ setMenuOpen }) => {
         />
       </div>
       <div className="menu-upper">
-        <div>
-          <Link to="/">
+        <div className="menu-item">
+          <NavLink
+            to={{
+              pathname: "/",
+              search: "?sort=name",
+              state: {
+                display: "featuredStores",
+                store: {},
+                category: {},
+              },
+            }}
+            activeStyle={{
+              color: "#f9300a",
+
+              fill: "currentColor",
+            }}
+          >
             <img src={home} />
             Home
-          </Link>
+          </NavLink>
         </div>
         <hr />
-        <Link to="/pickup">
-          <img src={pickup} />
-          Pickup
-        </Link>
+        <div className="menu-item">
+          <NavLink
+            to="/pickup"
+            activeStyle={{
+              color: "#f9300a",
+              fill: "currentColor",
+            }}
+          >
+            <img src={pickup} />
+            Pickup
+          </NavLink>
+        </div>
         <hr />
-        <Link to="/offers">
+        <NavLink
+          to="/offers"
+          activeStyle={{
+            color: "#f9300a",
+            fill: "currentColor",
+          }}
+        >
           <img src={offers} />
           Offers
-        </Link>
+        </NavLink>
         <hr />
         <a href="#">
           <img src={help} />
@@ -51,4 +82,4 @@ const Menu = ({ setMenuOpen }) => {
   );
 };
 
-export default Menu;
+export default withRouter(Menu);

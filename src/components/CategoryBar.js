@@ -13,7 +13,7 @@ const CategoryBar = ({ setDisplay, setCategory }) => {
       {categories.map((category) => {
         return (
           <CategoryBox
-            key={category.key}
+            key={category.id}
             category={category}
             handleCategoryClick={handleCategoryClick}
           />

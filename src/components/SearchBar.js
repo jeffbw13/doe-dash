@@ -11,11 +11,16 @@ import menu from "../assets/icons/menu.svg";
 import cart from "../assets/icons/shopping-cart2.svg";
 import doe from "../assets/images/doe2.png";
 
-const SearchBar = () => {
-  const [delivery, setDelivery] = useState(false);
+const SearchBar = ({
+  cartContents,
+  setCartContents,
+  delivery,
+  setDelivery,
+  address,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const addr = "1301 14th Ave";
+  //const addr = "1301 14th Ave";
   console.log("delivery: ", delivery);
   return (
     <>
@@ -52,7 +57,7 @@ const SearchBar = () => {
           ></div>
           <p>
             <span style={{ color: "#f9300a" }}> ASAP</span> to{" "}
-            <span style={{ color: "#f9300a" }}>{addr}</span>
+            <span style={{ color: "#f9300a" }}>{address}</span>
           </p>
         </div>
         <Link to="/">
@@ -95,7 +100,11 @@ const SearchBar = () => {
         isOpen={cartOpen}
         onRequestClose={() => setCartOpen(!cartOpen)}
       >
-        <Cart setCartOpen={setCartOpen} />
+        <Cart
+          setCartOpen={setCartOpen}
+          cartContents={cartContents}
+          setCartContents={setCartContents}
+        />
       </CartSlider>
     </>
   );
@@ -111,6 +120,18 @@ export default SearchBar;
 </div>
 </SlidingPanel>
 
+
+
+<CartSlider
+        isOpen={cartOpen}
+        onRequestClose={() => setCartOpen(!cartOpen)}
+      >
+        <Cart
+          setCartOpen={setCartOpen}
+          cartContents={cartContents}
+          setCartContents={setCartContents}
+        />
+      </CartSlider>
 */
 
 /*

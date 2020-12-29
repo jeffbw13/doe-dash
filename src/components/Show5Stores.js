@@ -8,10 +8,11 @@ const Show5Stores = ({ showing, setDisplay, setStore }) => {
 
   useEffect(() => {
     //  this needs to be promise based - get rid of callback
+    //  pass in showing.searchFor
     const stuff = getStores((data) => {
       //console.log("data: ", data);
       setStores(data);
-    });
+    }, showing.searchFor);
   }, []);
 
   const handleStoreClick = (store) => {

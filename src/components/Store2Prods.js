@@ -1,6 +1,12 @@
+import star from "../assets/icons/star.svg";
+
 const Store2Prods = ({ store, handleStoreClick }) => {
   //  this should display images of 'featured products,' but for now
   //    we'll display the first two products
+  let dollars = "";
+  for (let x = 1; x <= store.cost; x++) {
+    dollars += "$";
+  }
   return (
     <>
       <div className="store-2-prods" onClick={() => handleStoreClick(store)}>
@@ -9,8 +15,27 @@ const Store2Prods = ({ store, handleStoreClick }) => {
           <img src={store.products[1].photo} />
         </div>
         <div className="store-2-prods-text">
-          <p className="card-name">{store.name}</p>
-          <p className="card-text">{store.description}</p>
+          <div className="store-2-prods-name">{store.name}</div>
+          <div className="store-2-prods-line">
+            <div>
+              {dollars} • {store.categories.join(", ")}
+            </div>
+            <div>Ready in ?? min</div>
+          </div>
+          <div className="store-2-prods-line">
+            <div>
+              {store.stars}
+              <img
+                style={{ width: "15px", height: "15px", fill: "#191919" }}
+                src={star}
+              />
+              Crapload of ratings
+            </div>
+            <div>
+              {store.distance}
+              miles
+            </div>
+          </div>
         </div>
       </div>
     </>
@@ -18,3 +43,7 @@ const Store2Prods = ({ store, handleStoreClick }) => {
 };
 
 export default Store2Prods;
+
+/*
+
+*/
