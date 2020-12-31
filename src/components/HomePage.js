@@ -16,23 +16,23 @@ const HomePage = ({
   geoCode,
   setGeoCode,
 }) => {
-  const [delivery, setDelivery] = useState(false);
+  const [delivery, setDelivery] = useState(true);
   const [display, setDisplay] = useState("featuredStores");
   const [store, setStore] = useState({});
   const [category, setCategory] = useState({});
-  const [cartContents, setCartContents] = useState([]);
+  const [order, setOrder] = useState({ cartContents: [] });
 
   const userLoc = geoCode;
-  console.log("address", address);
 
   return (
     <>
       <SearchBar
-        cartContents={cartContents}
-        setCartContents={setCartContents}
+        order={order}
+        setOrder={setOrder}
         delivery={delivery}
         setDelivery={setDelivery}
         address={shortAddress}
+        setDisplay={setDisplay}
       />
       {delivery && display === "featuredStores" && (
         <CategoryBar setDisplay={setDisplay} setCategory={setCategory} />
@@ -53,11 +53,7 @@ const HomePage = ({
         <Pickup setDisplay={setDisplay} setStore={setStore} userLoc={userLoc} />
       )}
       {display === "store" && (
-        <Store
-          store={store}
-          cartContents={cartContents}
-          setCartContents={setCartContents}
-        />
+        <Store store={store} order={order} setOrder={setOrder} />
       )}
       {display === "category" && (
         <Category

@@ -1,4 +1,3 @@
-import React from "react";
 import Menu from "./Menu";
 
 const MenuSlider = (props) => {
@@ -8,7 +7,7 @@ const MenuSlider = (props) => {
         className="menu-slider"
         style={{
           transition: "transform .5s",
-          transform: props.isOpen ? "translateX(0)" : "translateX(-20vw)",
+          transform: props.isOpen ? "translateX(0)" : "translateX(-25vw)",
         }}
       >
         {props.children}

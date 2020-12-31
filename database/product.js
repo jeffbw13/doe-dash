@@ -14,7 +14,7 @@ const productSchema = new Schema({
     {
       description: String,
       required: Boolean,
-      choice: Boolean,
+      onlyOne: Boolean,
       options: [{ option: String, price: Number }],
     },
   ],

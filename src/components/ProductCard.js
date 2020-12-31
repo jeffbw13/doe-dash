@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddOnModal from "react-modal";
 import AddOns from "./AddOns";
 
-const ProductCard = ({ product, purchaseItem }) => {
+const ProductCard = ({ product, orderItem }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const modalStyles = {
@@ -18,6 +18,8 @@ const ProductCard = ({ product, purchaseItem }) => {
       transform: "translate(-50%, -50%)",
     },
   };
+
+  AddOnModal.setAppElement("#modal");
 
   return (
     <>
@@ -37,7 +39,7 @@ const ProductCard = ({ product, purchaseItem }) => {
         <AddOns
           product={product}
           setModalOpen={setModalOpen}
-          purchaseItem={purchaseItem}
+          orderItem={orderItem}
         />
       </AddOnModal>
     </>

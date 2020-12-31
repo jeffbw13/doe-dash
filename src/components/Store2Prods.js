@@ -29,11 +29,11 @@ const Store2Prods = ({ store, handleStoreClick }) => {
                 style={{ width: "15px", height: "15px", fill: "#191919" }}
                 src={star}
               />
-              Crapload of ratings
+              {store.ratings} ratings
             </div>
             <div>
               {store.distance}
-              miles
+              &nbsp;miles
             </div>
           </div>
         </div>

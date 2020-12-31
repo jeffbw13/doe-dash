@@ -2,11 +2,14 @@ import React from "react";
 
 const CartItem = ({ item }) => {
   return (
-    <>
-      <h4>Gotta item</h4>
-      <p>{item.name}</p>
-      <p>{item.price}</p>
-    </>
+    <div className="cart-item">
+      <div>
+        <p>
+          {item.quantity} x {item.name}
+        </p>
+      </div>
+      <p>${item.totalCost * item.quantity}</p>
+    </div>
   );
 };
 

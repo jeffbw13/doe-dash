@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
+import pin from "../assets/icons/pin.png";
 import GOOGLEMAPS_API_KEY from "../config/googlemaps.js";
 
 const Map = ({ stores, userLoc }) => {
@@ -29,26 +30,27 @@ const Map = ({ stores, userLoc }) => {
     );
   };
 
-  const NotherPin = ({ text }) => {
+  const NotherPin = ({ text, $hover }) => {
+    const alertx = $hover ? true : false;
+    if (alertx) {
+      alert(text);
+    }
     return (
-      <div>
-        <span
-          style={{
-            fontSize: "14px",
-            color: "red",
-            padding: "5px",
-            borderRadius: "5px",
-          }}
-        >
-          {text}
-        </span>
+      <div
+        style={{
+          textAlign: "center",
+          fontSize: ".7rem",
+          color: "red",
+        }}
+      >
+        {/*text*/}
+        <img style={{ width: "35px", height: "38px" }} src={pin} />
       </div>
     );
   };
 
   const onChildMouseEnter = () => {};
   const onChildMouseLeave = () => {};
-  console.log("stores in map", stores);
 
   return (
     <div className="map" style={{ height: "90vh", width: "47%" }}>

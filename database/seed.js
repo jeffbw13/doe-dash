@@ -72,6 +72,7 @@ const addons = [
     ],
   },
 ];
+
 for (let i = 0; i < 100; i++) {
   const product = {
     productId: i + 1,
@@ -114,8 +115,10 @@ function createStores(products) {
       zip: faker.address.zipCode(),
       photo: shacks[getRandomInteger(0, 4)],
       stars: getRandomInteger(1, 5),
+      ratings: getRandomInteger(1, 500),
       cost: getRandomInteger(1, 5),
-      deliveryCost: 3.99,
+      deliveryFee: getRandomInteger(1, 4),
+      preparationTime: getRandomInteger(5, 30),
       nationalFavorite: getRandomInteger(1, 5) === 1 ? true : false,
       localFavorite: getRandomInteger(1, 5) === 1 ? true : false,
       blackOwned: getRandomInteger(1, 5) === 1 ? true : false,

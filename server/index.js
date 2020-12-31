@@ -69,8 +69,8 @@ app.get("/store/", function (req, res) {
       stores.forEach((store) => {
         store.distance =
           Math.round(
-            geoDistance(userLoc, [store.latitude, store.longitude]) * 100
-          ) * 0.01;
+            geoDistance(userLoc, [store.latitude, store.longitude]) * 10
+          ) * 0.1;
       });
 
       res.write(JSON.stringify(stores));

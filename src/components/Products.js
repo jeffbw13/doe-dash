@@ -1,13 +1,18 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 
-const Products = ({ store, purchaseItem }) => {
+const Products = ({ store, orderItem }) => {
   return (
     <>
-      <h1>Products</h1>
       <div className="products">
         {store.products.map((product) => {
-          return <ProductCard product={product} purchaseItem={purchaseItem} />;
+          return (
+            <ProductCard
+              product={product}
+              orderItem={orderItem}
+              key={product._id}
+            />
+          );
         })}
       </div>
     </>

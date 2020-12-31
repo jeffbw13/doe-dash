@@ -5,23 +5,22 @@ import CartSlider from "./CartSlider";
 import Menu from "./Menu";
 import Cart from "./Cart";
 //import { Transition } from "react-transition-group";
-//import Fade from "./Fade";
 //import ExampleTransition from "./ExampleTransition";
 import menu from "../assets/icons/menu.svg";
 import cart from "../assets/icons/shopping-cart2.svg";
 import doe from "../assets/images/doe2.png";
 
 const SearchBar = ({
-  cartContents,
-  setCartContents,
+  order,
+  setOrder,
   delivery,
   setDelivery,
   address,
+  setDisplay,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  //const addr = "1301 14th Ave";
-  console.log("delivery: ", delivery);
+
   return (
     <>
       <div className="search-bar">
@@ -61,7 +60,10 @@ const SearchBar = ({
           </p>
         </div>
         <Link to="/">
-          <div className="logo-box">
+          <div
+            className="logo-box"
+            onClick={() => setDisplay("featuredStores")}
+          >
             <div className="doe-hed">
               <img
                 src={doe}
@@ -86,7 +88,8 @@ const SearchBar = ({
             placeholder="Search"
           ></input>
           <div className="cart-button" onClick={() => setCartOpen(!cartOpen)}>
-            <img src={cart} alt="cart button" />0
+            <img src={cart} alt="cart button" />
+            {order.cartContents.length}
           </div>
         </div>
       </div>
@@ -99,13 +102,7 @@ const SearchBar = ({
       <CartSlider
         isOpen={cartOpen}
         onRequestClose={() => setCartOpen(!cartOpen)}
-      >
-        <Cart
-          setCartOpen={setCartOpen}
-          cartContents={cartContents}
-          setCartContents={setCartContents}
-        />
-      </CartSlider>
+      ></CartSlider>
     </>
   );
 };
@@ -114,13 +111,19 @@ export default SearchBar;
 
 /*
 
+current cart
+<Cart
+          setCartOpen={setCartOpen}
+          cartContents={cartContents}
+          setCartContents={setCartContents}
+        />
+
+
 <SlidingPanel type={"left"} isOpen={openMenu} size={20}>
 <div>
   <Menu setOpenMenu={setOpenMenu} />
 </div>
 </SlidingPanel>
-
-
 
 <CartSlider
         isOpen={cartOpen}
