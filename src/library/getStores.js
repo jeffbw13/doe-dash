@@ -26,7 +26,7 @@ const getStores = (
     .get(url)
     .then(function (response) {
       //  fix this to work with promise or async/await
-      callback(response.data.slice(0, 10));
+      callback(response.data);
     })
     .catch(function (error) {
       // handle error

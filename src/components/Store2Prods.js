@@ -3,13 +3,19 @@ import star from "../assets/icons/star.svg";
 const Store2Prods = ({ store, handleStoreClick }) => {
   //  this should display images of 'featured products,' but for now
   //    we'll display the first two products
+  const handleMouseOver = () => {};
+
   let dollars = "";
   for (let x = 1; x <= store.cost; x++) {
     dollars += "$";
   }
   return (
     <>
-      <div className="store-2-prods" onClick={() => handleStoreClick(store)}>
+      <div
+        className="store-2-prods"
+        onMouseOver={() => handleMouseOver()}
+        onClick={() => handleStoreClick(store)}
+      >
         <div className="store-2-prods-img">
           <img src={store.products[0].photo} />
           <img src={store.products[1].photo} />
@@ -20,7 +26,7 @@ const Store2Prods = ({ store, handleStoreClick }) => {
             <div>
               {dollars} • {store.categories.join(", ")}
             </div>
-            <div>Ready in ?? min</div>
+            <div>Ready in {store.preparationTime} min</div>
           </div>
           <div className="store-2-prods-line">
             <div>

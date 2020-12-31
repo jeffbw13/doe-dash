@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddOn = ({
   addOn,
@@ -8,12 +8,10 @@ const AddOn = ({
   setTotalCost,
 }) => {
   const [optionsChecked, setOptionsChecked] = useState({});
-  console.log("addon");
-  const addOnAddOn = (selection) => {};
 
   const handleInputChange = (event) => {
-    console.log("event: ", event);
     const optionsCheckedX = { ...optionsChecked };
+
     if (event.target.type === "checkbox") {
       if (event.target.checked) {
         optionsCheckedX[event.target.name] = true;
@@ -25,10 +23,13 @@ const AddOn = ({
       }
     }
     setOptionsChecked(optionsCheckedX);
+  };
+
+  useEffect(() => {
     const addOnsOrderedX = { ...addOnsOrdered };
     addOnsOrderedX[addOn.description] = { ...optionsChecked };
     setAddOnsOrdered(addOnsOrderedX);
-  };
+  }, [optionsChecked]);
 
   return (
     <div>
@@ -53,9 +54,3 @@ const AddOn = ({
 };
 
 export default AddOn;
-
-/*
-      {addOn.options.map((option) => {
-        return <div>{option.option}</div>;
-      })}
-*/

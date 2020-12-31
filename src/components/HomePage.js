@@ -22,8 +22,6 @@ const HomePage = ({
   const [category, setCategory] = useState({});
   const [order, setOrder] = useState({ cartContents: [] });
 
-  const userLoc = geoCode;
-
   return (
     <>
       <SearchBar
@@ -45,22 +43,24 @@ const HomePage = ({
               showing={showing}
               setDisplay={setDisplay}
               setStore={setStore}
+              usrLoc={geoCode}
               key={showing}
             />
           );
         })}
       {!delivery && display !== "store" && (
-        <Pickup setDisplay={setDisplay} setStore={setStore} userLoc={userLoc} />
+        <Pickup setDisplay={setDisplay} setStore={setStore} usrLoc={geoCode} />
       )}
       {display === "store" && (
         <Store store={store} order={order} setOrder={setOrder} />
       )}
-      {display === "category" && (
+      {delivery && display === "category" && (
         <Category
           category={category}
           setDisplay={setDisplay}
           setStore={setStore}
           setCategory={setCategory}
+          usrLoc={geoCode}
         />
       )}
     </>

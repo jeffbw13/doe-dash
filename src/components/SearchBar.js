@@ -102,7 +102,9 @@ const SearchBar = ({
       <CartSlider
         isOpen={cartOpen}
         onRequestClose={() => setCartOpen(!cartOpen)}
-      ></CartSlider>
+      >
+        <Cart setCartOpen={setCartOpen} order={order} setOrder={setOrder} />
+      </CartSlider>
     </>
   );
 };
@@ -131,8 +133,8 @@ current cart
       >
         <Cart
           setCartOpen={setCartOpen}
-          cartContents={cartContents}
-          setCartContents={setCartContents}
+          order={order}
+          setOrder={setOrder}
         />
       </CartSlider>
 */

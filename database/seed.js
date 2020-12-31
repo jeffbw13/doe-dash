@@ -103,6 +103,7 @@ function createStores(products) {
   for (let i = 0; i < 100; i++) {
     const lat = getRandomInteger(37749, 37804);
     const long = getRandomInteger(122399, 122470) * -1; //  west longitude
+    //console.log("lat: ", lat, "long: ", long);
     const store = {
       storeId: i + 1,
       name: faker.company.companyName(),

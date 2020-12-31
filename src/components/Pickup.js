@@ -3,28 +3,32 @@ import Map from "./Map";
 import Store2Prods from "./Store2Prods";
 import getStores from "../library/getStores";
 
-const Pickup = ({ setDisplay, setStore, userLoc }) => {
+const Pickup = ({ setDisplay, setStore, usrLoc }) => {
   const [stores, setStores] = useState([]);
 
+  console.log("usrLoc", usrLoc);
+  usrLoc = {} ? { lat: 37.75, lng: -122.44 } : usrLoc;
+
   useEffect(() => {
-    //  this needs to be promise based - get rid of callback
+    //  this should be promise based - get rid of callback
     //  pass in showing.searchFor
     const stuff = getStores(
       (data) => {
-        //console.log("stores: ", data);
-        setStores(data);
+        //  sort/limit should be done by api
+        data.sort((a, b) => {
+          return a.distance - b.distance;
+        });
+        setStores(data.slice(0, 20));
       },
-      { stars: "[$gt]=3" }
+      {},
+      5,
+      usrLoc
     );
   }, []);
 
   const handleStoreClick = (store) => {
-    //alert("clicked on store");
     setStore(store);
     setDisplay("store");
-    console.log("store", store);
-    console.log("setdisplay", setDisplay);
-    // setDisplay{"store"};
   };
 
   return (
@@ -42,7 +46,7 @@ const Pickup = ({ setDisplay, setStore, userLoc }) => {
         })}
       </div>
       <div className="pickup-right"></div>
-      <Map stores={stores} userLoc={userLoc} />
+      <Map stores={stores} usrLoc={usrLoc} />
     </div>
   );
 };

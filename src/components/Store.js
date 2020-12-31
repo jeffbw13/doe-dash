@@ -9,7 +9,8 @@ const Store = ({ store, order, setOrder }) => {
   const orderItem = (item) => {
     //  if different store, delete the old order
     if (order.store && order.store.storeId !== store.storeId) {
-      setOrder({ cartContents: [] });
+      const newOrder = { cartContents: [] };
+      setOrder(newOrder);
     }
     const orderX = { ...order };
     if (!orderX.store) {

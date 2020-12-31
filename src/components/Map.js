@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
+import ReactTooltip from "react-tooltip";
 import pin from "../assets/icons/pin.png";
 import GOOGLEMAPS_API_KEY from "../config/googlemaps.js";
 
-const Map = ({ stores, userLoc }) => {
+const Map = ({ stores, usrLoc }) => {
   const [center, setCenter] = useState({ lat: 37.75, lng: -122.44 });
   const [zoom, setZoom] = useState(12.2);
 
-  // let center = {
-  //   lat: this.props.user.latitude,
-  //   lng: this.props.user.longitude
-  // };
-
-  const CurrentPin = ({ text }) => {
+  const HomePin = ({ text }) => {
     return (
       <div>
         {/* <Icon name="user circle outline" color='blue' size='big' style={iconStyle}/> */}
@@ -30,11 +26,9 @@ const Map = ({ stores, userLoc }) => {
     );
   };
 
-  const NotherPin = ({ text, $hover }) => {
-    const alertx = $hover ? true : false;
-    if (alertx) {
-      alert(text);
-    }
+  const StorePin = ({ text, store }) => {
+    const tip = `${store.name}\n${store.distance} mi`;
+
     return (
       <div
         style={{
@@ -44,7 +38,11 @@ const Map = ({ stores, userLoc }) => {
         }}
       >
         {/*text*/}
-        <img style={{ width: "35px", height: "38px" }} src={pin} />
+        <p data-tip={tip}>
+          <img style={{ width: "35px", height: "38px" }} src={pin} />
+        </p>
+        <ReactTooltip />
+        <p style={{ marginTop: "-17px" }}>{store.categories[0]}</p>
       </div>
     );
   };
@@ -66,32 +64,18 @@ const Map = ({ stores, userLoc }) => {
         onChildMouseLeave={onChildMouseLeave}
       >
         {/* {facilityPins} */}
-        <CurrentPin lat={userLoc.lat} lng={userLoc.lng} text={"You"} />
+        <HomePin lat={usrLoc.lat} lng={usrLoc.lng} text={"You"} />
         {stores.map((store) => {
           return (
-            <NotherPin
+            <StorePin
               lat={store.latitude}
               lng={store.longitude}
               text={store.name}
+              store={store}
               key={store._id}
             />
           );
         })}
-        <NotherPin
-          // onClick={()=>this.props.onLaundromatSelectClick(43)}
-
-          lat={37.775}
-          lng={-122.43}
-          text={"W"}
-        />
-        <NotherPin lat={37.7739} lng={-122.429} text={"W"} />
-        <NotherPin lat={37.7739} lng={-122.435} text={"W"} />
-        {/* {infoBox} */}
-        {/* {this.props.currentFacilityPosition === "" && this.props.currentFacilityZoom === ""
-              ? null
-              : <Button onClick={this.removeCenterAndZoom} style={{float: 'left', backgroundColor: 'AliceBlue', margin: '5px', border: 'solid 1px black', fontSize: '100%', boxShadow: '3px 3px 1px #888888'}}><Icon className="compass" size="large" />re-center</Button>
-
-            } */}
       </GoogleMapReact>
     </div>
   );

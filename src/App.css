@@ -136,11 +136,11 @@ a {
 .cart-slider {
   position: fixed;
   z-index: 500;
-  background-color: blue;
   width: 20%;
   padding: 0;
-  margin: 0;
+  top: 52px;
   right: 0;
+  background-color: white;
 }
 
 .cart-slider-bg {
