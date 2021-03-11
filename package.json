@@ -29,7 +29,7 @@
     "eject": "react-scripts eject",
     "db:seed": "node database/seed.js",
     "express": "nodemon server",
-    "proxy": "http://localhost:8080"
+    "proxy": "http://localhost:3000"
   },
   "eslintConfig": {
     "extends": [

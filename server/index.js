@@ -7,7 +7,7 @@ const Product = require("../database/product");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../build")));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

@@ -4,7 +4,8 @@ const Store = require("./store");
 const Product = require("./product");
 const faker = require("faker");
 
-mongoose.connect("mongodb://localhost/doe-dash");
+//mongoose.connect("mongodb://localhost/doe-dash");
+//mongoose.connect("mongodb://db:27017/doe-dash");
 
 const shacks = [];
 shacks.push("http://www.paulnoll.com/Books/5000-Words/7000-pic-shack.jpg");
