@@ -14,7 +14,7 @@ const Category = ({ category, setDisplay, setStore, setCategory }) => {
     //  this needs to be promise based - get rid of callback
     getStores(
       (data) => {
-        //console.log("data: ", data);
+        console.log("data: ", data);
         setStores(data);
       },
       { categories: `=${category.id}` }
