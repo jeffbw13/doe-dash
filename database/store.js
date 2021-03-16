@@ -32,7 +32,7 @@ const storeSchema = new Schema({
   preparationTime: Number,
   nationalFavorite: Boolean,
   localFavorite: Boolean,
-  blackOwned: Boolean,
+  mooseOwned: Boolean,
   latitude: Number,
   longitude: Number,
   distance: Number,

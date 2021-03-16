@@ -123,7 +123,7 @@ function createStores(products) {
       preparationTime: getRandomInteger(5, 30),
       nationalFavorite: getRandomInteger(1, 5) === 1 ? true : false,
       localFavorite: getRandomInteger(1, 5) === 1 ? true : false,
-      blackOwned: getRandomInteger(1, 5) === 1 ? true : false,
+      mooseOwned: getRandomInteger(1, 5) === 1 ? true : false,
       products: [],
       latitude: lat * 0.001,
       longitude: long * 0.001,

@@ -1,10 +1,5 @@
 const featuredStores = [
   {
-    title: "Black-Owned Businesses",
-    description: "",
-    searchFor: { blackOwned: "=true" },
-  },
-  {
     title: "National Favorites",
     description: "",
     searchFor: { nationalFavorite: "=true" },
@@ -23,6 +18,11 @@ const featuredStores = [
     title: "More Than Three Stars",
     description: "",
     searchFor: { stars: "[$gt]=3" },
+  },
+  {
+    title: "Moose-Owned Businesses",
+    description: "",
+    searchFor: { mooseOwned: "=true" },
   },
 ];
 
